@@ -9,10 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.UpdateUserPasswordDTO;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
 import br.ufop.edu.web.ticket.User.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,11 +28,11 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/")
-    public ResponseEntity<String> getState() {//!
+    public ResponseEntity<String> getState() {
         return ResponseEntity.ok("EndPoint on PORT 3000");
     }
     
-    @GetMapping //*---> @GetMapping */
+    @GetMapping
     public ResponseEntity <List<UserRecordDTO>> getAllUsers() { //* Mapeia e retorna todos os usuários no endpoint /users */
 
         List<UserRecordDTO> userList = userService.getAllUsers();
@@ -69,5 +72,29 @@ public class UserController {
     @GetMapping("/bycity/{city}")
     public ResponseEntity <List<UserRecordDTO>> getUserByCity(@PathVariable(value = "city")String city){
         return null; //!! Alterar e retornar de acordo com a cidade
+    }
+
+    @PutMapping
+    public ResponseEntity<UserRecordDTO> updateUser(@RequestBody UpdateUserDTO updateUserDTO){
+
+        UserRecordDTO userRecordDTO = userService.updateUser(updateUserDTO);
+
+        if (userRecordDTO == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(userRecordDTO);
+    }
+
+    @PutMapping("/password") //* Entendendo mudança de apenas um campos do usuário */
+    public ResponseEntity<UserRecordDTO> updateUserPassword(@RequestBody UpdateUserPasswordDTO updateUserPasswordDTO){
+
+        UserRecordDTO userRecordDTO = userService.updatePassword(updateUserPasswordDTO);
+
+        if (userRecordDTO == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(userRecordDTO);
     }
 }

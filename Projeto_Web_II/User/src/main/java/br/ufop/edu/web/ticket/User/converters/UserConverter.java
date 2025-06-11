@@ -2,6 +2,7 @@ package br.ufop.edu.web.ticket.User.converters;
 
 import br.ufop.edu.web.ticket.User.domain.UserDomain;
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
 import br.ufop.edu.web.ticket.User.models.UserModel;
 import lombok.AccessLevel;
@@ -20,5 +21,9 @@ public class UserConverter {//* Funciona como o modelo SingleTom */
 
     public static UserModel touUserModel(UserDomain userDomain){
         return UserModel.builder().id(userDomain.getId()).name(userDomain.getName()).creditCardNumber(userDomain.getCreditCardNumber()).email(userDomain.getEmail()).password(userDomain.getPassword()).city(userDomain.getCity()).build();
+    }
+
+    public static UserDomain toUserDomain(UpdateUserDTO updateUserDTO) { //* Atualiza todos os dados do usuário */
+        return UserDomain.builder().id(updateUserDTO.getId()).name(updateUserDTO.getName()).creditCardNumber(updateUserDTO.getCreditCardNumber()).email(updateUserDTO.getEmail()).password(updateUserDTO.getPassword()).city(updateUserDTO.getCity()).build();
     }
 }

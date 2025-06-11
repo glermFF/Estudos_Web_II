@@ -2,7 +2,10 @@ package br.ufop.edu.web.ticket.User.services;
 import br.ufop.edu.web.ticket.User.converters.UserConverter;
 import br.ufop.edu.web.ticket.User.domain.UserDomain;
 import br.ufop.edu.web.ticket.User.domain.usecase.CreateUserUsecase;
+import br.ufop.edu.web.ticket.User.domain.usecase.UpdateUserPasswordUseCase;
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.UpdateUserPasswordDTO;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
 import br.ufop.edu.web.ticket.User.models.UserModel;
 import br.ufop.edu.web.ticket.User.repositories.IUserRepository;
@@ -58,4 +61,47 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
     }
 
     //!! Implementar função semelhante a anterior voltada para a cidade
+    //public List<UserRecordDTO> getUserByCity(String city){ List<UserModel> userModel = userRepository.findByCity(city) return userModel.stream().map(UserConverter::toUserRecordDTO).toList()}
+
+    public UserRecordDTO updateUser(UpdateUserDTO updateUserDTO) {
+
+        //* Converter para entidade do domínio */
+        UserDomain userDomain = UserConverter.toUserDomain(updateUserDTO);
+
+        //* Validar conforme as useCase */
+
+        //* Recuperar entidade atual no banco de dados*/
+        Optional<UserModel> optionalUserDTO = userRepository.findById(updateUserDTO.getId());
+
+        //* Verifica se o devido ID existe */
+        if (optionalUserDTO.isEmpty()){
+            return null;
+        }
+
+        UserModel userModel = UserConverter.touUserModel(userDomain);
+
+        return UserConverter.toUserRecordDTO(userRepository.save(userModel));
+
+    }
+
+    public UserRecordDTO updatePassword(UpdateUserPasswordDTO updateUserPasswordDTO) {
+
+        //* Recupera os dados da entidade */
+        Optional<UserModel> optionalUserPasswordDTO = userRepository.findById(updateUserPasswordDTO.getId());
+
+        UserModel userModel = optionalUserPasswordDTO.get();
+
+        //* Verifica se estão vazios */
+        if (optionalUserPasswordDTO.isEmpty()){
+            return null;
+        }
+        
+        //* No usecase utiliza e compara os dados coletados com os novos "settados" */
+        UpdateUserPasswordUseCase useCase = new UpdateUserPasswordUseCase(userModel.getEmail(), updateUserPasswordDTO.getEmail(), userModel.getPassword(), updateUserPasswordDTO.getOldPassword());
+        useCase.validate();
+
+        userModel.setPassword(updateUserPasswordDTO.getNewPassword());
+
+        return UserConverter.toUserRecordDTO(userRepository.save(userModel));
+    }
 }
