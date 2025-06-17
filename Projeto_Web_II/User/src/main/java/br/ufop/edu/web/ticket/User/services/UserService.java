@@ -4,6 +4,7 @@ import br.ufop.edu.web.ticket.User.domain.UserDomain;
 import br.ufop.edu.web.ticket.User.domain.usecase.CreateUserUsecase;
 import br.ufop.edu.web.ticket.User.domain.usecase.UpdateUserPasswordUseCase;
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.DeleteUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserPasswordDTO;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
@@ -103,5 +104,16 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
         userModel.setPassword(updateUserPasswordDTO.getNewPassword());
 
         return UserConverter.toUserRecordDTO(userRepository.save(userModel));
+    }
+
+    public void deleteUser(DeleteUserDTO deleteUserDTO) {
+        Optional<UserModel> optionalUserModel = userRepository.findById(deleteUserDTO.id());
+
+
+        if (optionalUserModel.isEmpty()){
+            throw new RuntimeException("User not found");
+        }
+
+        userRepository.delete(optionalUserModel.get());
     }
 }
