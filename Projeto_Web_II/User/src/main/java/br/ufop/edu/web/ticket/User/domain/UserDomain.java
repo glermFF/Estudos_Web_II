@@ -14,11 +14,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class UserDomain {
 
     private UUID id;
     private String name;
+
+    // ...
 
     private String creditCardNumber;
 
@@ -27,7 +28,9 @@ public class UserDomain {
 
     private String city;
 
-    private LocalDateTime creationApp;
-    private LocalDateTime updatedApp;
+    private CreditCardNetworkDomain creditCardNetworkDomain;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
 }

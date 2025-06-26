@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -20,13 +22,13 @@ import lombok.Setter;
 @Entity
 @Table(name = "tb_users")
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class UserModel {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -34,24 +36,29 @@ public class UserModel {
     private String name;
 
     private String creditCardNumber;
-    
-    @Column(nullable = true) //* Não é preciso pegar dados da cidade. Pode ser deixado o campo como vazio */
-    private String city;
 
     private String email;
     private String password;
 
-    private LocalDateTime creationApp;
-    private LocalDateTime updatedApp;
+    @Column(nullable = true) // true - default; false - not null
+    private String city;    
+
+    @ManyToOne
+    @JoinColumn(name = "credit_card_network_id")
+    private CreditCardNetworkModel creditCardNetworkModel;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @PrePersist
-    public void recordBefore(){
-        this.creationApp = LocalDateTime.now();
-        this.updatedApp = LocalDateTime.now();
+    public void antesGravar() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
     }
 
     @PreUpdate
-    public void updateBefore(){
-        this.updatedApp = LocalDateTime.now();
+    public void antesAtualizar(){
+        this.updatedAt = LocalDateTime.now();
     }
+
 }

@@ -1,10 +1,10 @@
 package br.ufop.edu.web.ticket.User.converters;
 
 import br.ufop.edu.web.ticket.User.domain.UserDomain;
+import br.ufop.edu.web.ticket.User.models.UserModel;
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
-import br.ufop.edu.web.ticket.User.models.UserModel;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
