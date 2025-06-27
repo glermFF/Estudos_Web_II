@@ -16,6 +16,8 @@ public class UpdateUserDTO {
     private UUID id;
 
     private String name;
+    
+    private UUID creditCardId;
     private String creditCardNumber;
 
     private String email;

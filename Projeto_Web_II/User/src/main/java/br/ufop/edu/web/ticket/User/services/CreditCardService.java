@@ -38,15 +38,13 @@ public class CreditCardService {
         return CreditCardConverter.toCreditCardDTO(creditCardModel);
     }
 
-    public CreditCardDTO findByNumber(String creditCardNumber) {
-        Optional<CreditCardNetworkModel> optionalCreditCardModel = creditCardNetworkRepository.findByCreditCardNumber(creditCardNumber);
+    public CreditCardDTO setCreditCard(CreditCardNetworkDomain creditCardDomain) {
+        CreditCardNetworkModel creditCardNetworkModel = CreditCardConverter.toCreditCardNetworkModel(creditCardDomain);
+        CreditCardNetworkModel savedModel = creditCardNetworkRepository.save(creditCardNetworkModel);
 
-        if (optionalCreditCardModel.isEmpty()) {
-            return null;
-        }
-
-        CreditCardNetworkModel creditCardNetworkModel = optionalCreditCardModel.get();
-        return CreditCardConverter.toCreditCardDTO(creditCardNetworkModel);
+        return CreditCardConverter.toCreditCardDTO(savedModel);
     }
+
+    //public CreditCardDTO findByNumber(String creditCardNumber) {Optional<CreditCardNetworkModel> optionalCreditCardModel = creditCardNetworkRepository.findByCreditCardNumber(creditCardNumber);if (optionalCreditCardModel.isEmpty()) {return null;        }CreditCardNetworkModel creditCardNetworkModel = optionalCreditCardModel.get(); return CreditCardConverter.toCreditCardDTO(creditCardNetworkModel);    }
 
 }

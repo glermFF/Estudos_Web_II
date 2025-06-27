@@ -1,19 +1,23 @@
 package br.ufop.edu.web.ticket.User.services;
 
-import br.ufop.edu.web.ticket.User.domain.CreditCardNetworkDomain;
 import br.ufop.edu.web.ticket.User.domain.UserDomain;
+import br.ufop.edu.web.ticket.User.models.CreditCardNetworkModel;
 import br.ufop.edu.web.ticket.User.models.UserModel;
-import br.ufop.edu.web.ticket.User.converters.CreditCardConverter;
+import br.ufop.edu.web.ticket.User.Enums.EnumUserType;
 import br.ufop.edu.web.ticket.User.converters.UserConverter;
+
 import br.ufop.edu.web.ticket.User.domain.usecase.CreateUserUsecase;
+import br.ufop.edu.web.ticket.User.domain.usecase.UpdateCreditCardUseCase;
 import br.ufop.edu.web.ticket.User.domain.usecase.UpdateUserPasswordUseCase;
+
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
-import br.ufop.edu.web.ticket.User.dtos.CreditCardDTO;
 import br.ufop.edu.web.ticket.User.dtos.DeleteUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.UpdateUserCreditCardDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserPasswordDTO;
-import br.ufop.edu.web.ticket.User.services.CreditCardService;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
+
+import br.ufop.edu.web.ticket.User.repositories.ICreditCardNetworkRepository;
 import br.ufop.edu.web.ticket.User.repositories.IUserRepository;
 
 import java.util.List;
@@ -29,7 +33,7 @@ import lombok.AllArgsConstructor;
 public class UserService { //* Funciona da mesma maneira como um SingleTom */
     
     private IUserRepository userRepository;
-    private CreditCardService creditCardService;
+    private ICreditCardNetworkRepository creditCardRepository;
 
     public List<UserRecordDTO> getAllUsers(){
         List<UserModel> userModelList = userRepository.findAll();
@@ -38,15 +42,13 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
     } //* Converte cada elemento da lista (L:20) de UserModel ao UserRecordDTO*/
 
     public UserRecordDTO createUser(CreateUserDTO createUserDTO){
-        
-        
-        CreditCardDTO creditCardDomain = creditCardService.findByNumber(createUserDTO.getCreditCardNumber());
-
-        UserDomain userDomain = UserConverter.toUserDomain(createUserDTO, creditCardDomain);
+        UserDomain userDomain = UserConverter.toUserDomain(createUserDTO);
 
         CreateUserUsecase createUserUsecase = new CreateUserUsecase(userDomain);createUserUsecase.validate();
 
         UserModel userModel = UserConverter.touUserModel(userDomain); //* Recupera os dados por meio do UserModel */
+
+        userModel.setUserType(EnumUserType.CUSTOMER); //* Define o tipo de usuário como cliente */
 
         //* Salva os devidos dados */
         return UserConverter.toUserRecordDTO(userRepository.save(userModel));
@@ -71,8 +73,7 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
         return userModel.stream().map(UserConverter::toUserRecordDTO).toList();
     }
 
-    //!! Implementar função semelhante a anterior voltada para a cidade
-    //public List<UserRecordDTO> getUserByCity(String city){ List<UserModel> userModel = userRepository.findByCity(city) return userModel.stream().map(UserConverter::toUserRecordDTO).toList()}
+    //!! Implementar função semelhante a anterior voltada para a cidade //public List<UserRecordDTO> getUserByCity(String city){ List<UserModel> userModel = userRepository.findByCity(city) return userModel.stream().map(UserConverter::toUserRecordDTO).toList()}
 
     public UserRecordDTO updateUser(UpdateUserDTO updateUserDTO) {
 
@@ -113,6 +114,33 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
 
         userModel.setPassword(updateUserPasswordDTO.getNewPassword());
 
+        return UserConverter.toUserRecordDTO(userRepository.save(userModel));
+    }
+
+    public UserRecordDTO updateCreditCard(UpdateUserCreditCardDTO updateUserCreditCardDTO) {
+        Optional<UserModel> optionalUserModel = userRepository.findById(updateUserCreditCardDTO.getId());
+        
+        UserModel userModel = optionalUserModel.get();
+
+        if (optionalUserModel.isEmpty()){
+            return null;
+        }
+
+        Optional<CreditCardNetworkModel> opt = creditCardRepository.findById(updateUserCreditCardDTO.getCreditCardId());
+
+        if (opt.isEmpty()) {
+            throw new RuntimeException("Credit card network not found");
+        }
+
+        CreditCardNetworkModel creditCardNetworkModel = opt.get();
+
+        userModel.setCreditCardNetworkModel(creditCardNetworkModel);
+
+        UpdateCreditCardUseCase useCase = new UpdateCreditCardUseCase(userModel.getCreditCardNetworkModel().getId(), updateUserCreditCardDTO.getCreditCardId(), userModel.getCreditCardNumber(), updateUserCreditCardDTO.getCreditCardNumber());
+        useCase.validate();
+
+        userModel.setCreditCardNumber(updateUserCreditCardDTO.getCreditCardNumber());
+        
         return UserConverter.toUserRecordDTO(userRepository.save(userModel));
     }
 

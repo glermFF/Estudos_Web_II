@@ -3,6 +3,7 @@ package br.ufop.edu.web.ticket.User.models;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import br.ufop.edu.web.ticket.User.Enums.EnumUserType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +37,8 @@ public class UserModel {
     private String name;
 
     private String creditCardNumber;
+    
+    private EnumUserType userType;
 
     private String email;
     private String password;

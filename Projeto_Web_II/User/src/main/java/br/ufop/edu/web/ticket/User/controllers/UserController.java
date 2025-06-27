@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.DeleteUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.UpdateUserCreditCardDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserPasswordDTO;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
@@ -88,7 +89,7 @@ public class UserController {
         return ResponseEntity.ok(userRecordDTO);
     }
 
-    @PutMapping("/password") //* Entendendo mudança de apenas um campos do usuário */
+    @PutMapping("/password") //* Atendendo mudanças de apenas um campos do usuário */
     public ResponseEntity<UserRecordDTO> updateUserPassword(@RequestBody UpdateUserPasswordDTO updateUserPasswordDTO){
 
         UserRecordDTO userRecordDTO = userService.updatePassword(updateUserPasswordDTO);
@@ -98,6 +99,17 @@ public class UserController {
         }
 
         return ResponseEntity.ok(userRecordDTO);
+    }
+
+    @PutMapping("/credit_card")
+    public ResponseEntity<UserRecordDTO> updateCreditCard(@RequestBody UpdateUserCreditCardDTO updateUserCreditCardDTO) {
+
+        UserRecordDTO userRecordDTO = userService.updateCreditCard(updateUserCreditCardDTO);
+        if (userRecordDTO == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+    return ResponseEntity.ok(userRecordDTO);
     }
 
     @DeleteMapping("/remove") //* Usa o endereço /remove como proteção de evitar acesso de usuários não autorizados */

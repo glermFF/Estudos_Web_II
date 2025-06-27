@@ -10,7 +10,7 @@ public class CreditCardConverter {
         return new CreditCardDTO(creditCardNetworkModel.getId(), creditCardNetworkModel.getName());
     }
 
-    public static CreditCardNetworkDomain toCreditCardNetworkDomain(CreditCardNetworkDomain creditCardNetworkDomain) {
-        return CreditCardNetworkDomain.builder().id(creditCardNetworkDomain.getId()).name(creditCardNetworkDomain.getName()).build();
+    public static CreditCardNetworkModel toCreditCardNetworkModel(CreditCardNetworkDomain creditCardDomain) {
+        return CreditCardNetworkModel.builder().id(creditCardDomain.getId()).name(creditCardDomain.getName()).build();
     }
 }
