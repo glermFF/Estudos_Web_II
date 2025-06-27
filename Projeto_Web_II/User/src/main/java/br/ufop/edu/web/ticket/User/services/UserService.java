@@ -1,14 +1,19 @@
 package br.ufop.edu.web.ticket.User.services;
-import br.ufop.edu.web.ticket.User.converters.UserConverter;
+
+import br.ufop.edu.web.ticket.User.domain.CreditCardNetworkDomain;
 import br.ufop.edu.web.ticket.User.domain.UserDomain;
+import br.ufop.edu.web.ticket.User.models.UserModel;
+import br.ufop.edu.web.ticket.User.converters.CreditCardConverter;
+import br.ufop.edu.web.ticket.User.converters.UserConverter;
 import br.ufop.edu.web.ticket.User.domain.usecase.CreateUserUsecase;
 import br.ufop.edu.web.ticket.User.domain.usecase.UpdateUserPasswordUseCase;
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
+import br.ufop.edu.web.ticket.User.dtos.CreditCardDTO;
 import br.ufop.edu.web.ticket.User.dtos.DeleteUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserPasswordDTO;
+import br.ufop.edu.web.ticket.User.services.CreditCardService;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
-import br.ufop.edu.web.ticket.User.models.UserModel;
 import br.ufop.edu.web.ticket.User.repositories.IUserRepository;
 
 import java.util.List;
@@ -24,6 +29,7 @@ import lombok.AllArgsConstructor;
 public class UserService { //* Funciona da mesma maneira como um SingleTom */
     
     private IUserRepository userRepository;
+    private CreditCardService creditCardService;
 
     public List<UserRecordDTO> getAllUsers(){
         List<UserModel> userModelList = userRepository.findAll();
@@ -32,7 +38,11 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
     } //* Converte cada elemento da lista (L:20) de UserModel ao UserRecordDTO*/
 
     public UserRecordDTO createUser(CreateUserDTO createUserDTO){
-        UserDomain userDomain = UserConverter.toUserDomain(createUserDTO);
+        
+        
+        CreditCardDTO creditCardDomain = creditCardService.findByNumber(createUserDTO.getCreditCardNumber());
+
+        UserDomain userDomain = UserConverter.toUserDomain(createUserDTO, creditCardDomain);
 
         CreateUserUsecase createUserUsecase = new CreateUserUsecase(userDomain);createUserUsecase.validate();
 

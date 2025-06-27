@@ -1,11 +1,11 @@
 package br.ufop.edu.web.ticket.User.repositories;
 
 import java.util.UUID;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.ufop.edu.web.ticket.User.models.UserModel;
-import java.util.List;
 
 
 public interface IUserRepository extends JpaRepository<UserModel, UUID>{ //* Extende de JpaRepository construindo o modelo UserModel com prikey UUID */
