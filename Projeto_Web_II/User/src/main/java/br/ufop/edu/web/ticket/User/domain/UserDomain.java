@@ -20,8 +20,6 @@ public class UserDomain {
     private UUID id;
     private String name;
 
-    // ...
-
     private String creditCardNumber;
 
     private String email;
