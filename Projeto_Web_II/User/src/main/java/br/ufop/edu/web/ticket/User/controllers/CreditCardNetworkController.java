@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ufop.edu.web.ticket.User.dtos.CreditCardDTO;
 import br.ufop.edu.web.ticket.User.services.CreditCardService;
 import br.ufop.edu.web.ticket.User.dtos.CreditCardNetwork.CreateCreditCardDTO;
+import br.ufop.edu.web.ticket.User.dtos.CreditCardNetwork.CreditCardDTO;
 import lombok.AllArgsConstructor;
 
 
@@ -32,6 +32,10 @@ public class CreditCardNetworkController {
     public ResponseEntity<CreditCardDTO> createCreditCard(@RequestBody CreateCreditCardDTO CreateCreditCardNetworkDTO){
 
         CreditCardDTO creditCardDTO = creditCardService.createCreditCard(CreateCreditCardNetworkDTO);
+
+        if (creditCardDTO == null) {
+            return ResponseEntity.badRequest().build();
+        }
 
         return ResponseEntity.ok(creditCardDTO);
     }

@@ -2,8 +2,9 @@ package br.ufop.edu.web.ticket.User.services;
 
 import br.ufop.edu.web.ticket.User.domain.CreditCardNetworkDomain;
 import br.ufop.edu.web.ticket.User.models.CreditCardNetworkModel;
-import br.ufop.edu.web.ticket.User.dtos.CreditCardDTO;
 import br.ufop.edu.web.ticket.User.dtos.CreditCardNetwork.CreateCreditCardDTO;
+import br.ufop.edu.web.ticket.User.dtos.CreditCardNetwork.CreditCardDTO;
+import br.ufop.edu.web.ticket.User.dtos.CreditCardNetwork.UpdateCreditCard;
 import br.ufop.edu.web.ticket.User.converters.CreditCardConverter;
 import br.ufop.edu.web.ticket.User.repositories.ICreditCardNetworkRepository;
 
@@ -46,9 +47,8 @@ public class CreditCardService {
     }
 
     // GET by id
-    public CreditCardDTO getCreditCardNetworkById(String id) {
-        UUID uuid = UUID.fromString(id);
-        Optional<CreditCardNetworkModel>optionalCreditCardModel = creditCardNetworkRepository.findById(uuid); //* Conseguimos verificar se o item foi recuperado ou não */
+    public CreditCardDTO getCreditCardNetworkById(UUID id) {
+        Optional<CreditCardNetworkModel>optionalCreditCardModel = creditCardNetworkRepository.findById(id); //* Conseguimos verificar se o item foi recuperado ou não */
 
         if (optionalCreditCardModel.isEmpty()){
             return null;
@@ -59,13 +59,19 @@ public class CreditCardService {
     }
 
     // UPDATE credit card
-    public CreditCardDTO setCreditCard(CreditCardNetworkDomain creditCardDomain) {
-        CreditCardNetworkModel creditCardNetworkModel = CreditCardConverter.toCreditCardNetworkModel(creditCardDomain);
-        CreditCardNetworkModel savedModel = creditCardNetworkRepository.save(creditCardNetworkModel);
+    public CreditCardDTO updateCreditCard(UpdateCreditCard updateCreditCard){
 
-        return CreditCardConverter.toCreditCardDTO(savedModel);
+        CreditCardNetworkDomain domainCCN = CreditCardConverter.toCreditCardNetworkDomain(updateCreditCard);
+
+        Optional<CreditCardNetworkModel> optionalCCN = creditCardNetworkRepository.findById(updateCreditCard.id());
+
+        if (optionalCCN.isEmpty()) {
+            return null;
+        }
+
+        CreditCardNetworkModel modelCCN = CreditCardConverter.toCreditCardNetworkModel(domainCCN);
+
+        return CreditCardConverter.toCreditCardDTO(creditCardNetworkRepository.save(modelCCN));
     }
-
-    //public CreditCardDTO findByNumber(String creditCardNumber) {Optional<CreditCardNetworkModel> optionalCreditCardModel = creditCardNetworkRepository.findByCreditCardNumber(creditCardNumber);if (optionalCreditCardModel.isEmpty()) {return null;        }CreditCardNetworkModel creditCardNetworkModel = optionalCreditCardModel.get(); return CreditCardConverter.toCreditCardDTO(creditCardNetworkModel);    }
 
 }

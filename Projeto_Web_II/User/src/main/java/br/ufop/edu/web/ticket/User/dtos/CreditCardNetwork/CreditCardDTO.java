@@ -1,4 +1,4 @@
-package br.ufop.edu.web.ticket.User.dtos;
+package br.ufop.edu.web.ticket.User.dtos.CreditCardNetwork;
 
 import java.util.UUID;
 

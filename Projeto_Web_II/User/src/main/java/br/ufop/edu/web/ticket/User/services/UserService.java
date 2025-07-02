@@ -32,8 +32,8 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class UserService { //* Funciona da mesma maneira como um SingleTom */
     
-    private IUserRepository userRepository;
-    private ICreditCardNetworkRepository creditCardRepository;
+    private final IUserRepository userRepository;
+    private final ICreditCardNetworkRepository creditCardRepository;
 
     public List<UserRecordDTO> getAllUsers(){
         List<UserModel> userModelList = userRepository.findAll();
@@ -139,11 +139,13 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
 
         userModel.setCreditCardNetworkModel(creditCardNetworkModel);
 
+        ///
         UpdateCreditCardUseCase useCase = new UpdateCreditCardUseCase(userModel.getCreditCardNetworkModel().getId(), updateUserCreditCardDTO.getCreditCardId(), userModel.getCreditCardNumber(), updateUserCreditCardDTO.getCreditCardNumber());
         useCase.validate();
 
         userModel.setCreditCardNumber(updateUserCreditCardDTO.getCreditCardNumber());
-        
+        ///
+         
         return UserConverter.toUserRecordDTO(userRepository.save(userModel));
     }
 
