@@ -1,4 +1,4 @@
-package br.ufop.edu.web.ticket.User.dtos;
+package br.ufop.edu.web.ticket.User.dtos.CreditCardNetwork;
 
 import java.util.UUID;
 
@@ -11,10 +11,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UpdateUserCreditCardDTO {
-    
+
+public class CreateCreditCardDTO {
     private UUID id;
-    
-    private UUID creditCardId;
-    private String creditCardNumber;
+    private String name;
 }

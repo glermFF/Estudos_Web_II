@@ -120,19 +120,22 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
     public UserRecordDTO updateCreditCard(UpdateUserCreditCardDTO updateUserCreditCardDTO) {
         Optional<UserModel> optionalUserModel = userRepository.findById(updateUserCreditCardDTO.getId());
         
-        UserModel userModel = optionalUserModel.get();
-
+        
         if (optionalUserModel.isEmpty()){
             return null;
         }
 
-        Optional<CreditCardNetworkModel> opt = creditCardRepository.findById(updateUserCreditCardDTO.getCreditCardId());
+        Optional<CreditCardNetworkModel> optCreditCard = creditCardRepository.findById(updateUserCreditCardDTO.getCreditCardId());
 
-        if (opt.isEmpty()) {
-            throw new RuntimeException("Credit card network not found");
+        if (optCreditCard.isEmpty()) {
+            return null;
         }
 
-        CreditCardNetworkModel creditCardNetworkModel = opt.get();
+
+        UserModel userModel = optionalUserModel.get();
+        CreditCardNetworkModel creditCardNetworkModel = optCreditCard.get();
+
+        userModel.setCreditCardNumber(updateUserCreditCardDTO.getCreditCardNumber());
 
         userModel.setCreditCardNetworkModel(creditCardNetworkModel);
 

@@ -16,11 +16,11 @@ import br.ufop.edu.web.ticket.User.dtos.UpdateUserDTO;
 import br.ufop.edu.web.ticket.User.dtos.UpdateUserPasswordDTO;
 import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
 import br.ufop.edu.web.ticket.User.services.UserService;
-import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.AllArgsConstructor;
 
 
 @RestController //*Indica que a classe comportará como dispositivo de controle */
