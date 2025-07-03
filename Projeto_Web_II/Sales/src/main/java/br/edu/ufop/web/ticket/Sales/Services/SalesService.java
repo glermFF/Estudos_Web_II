@@ -1,5 +1,6 @@
 package br.edu.ufop.web.ticket.Sales.Services;
 
+import java.util.List;
 
 import br.edu.ufop.web.ticket.Sales.converters.SalesConverter;
 import br.edu.ufop.web.ticket.Sales.domain.SalesDomain;
@@ -12,6 +13,14 @@ public class SalesService {
     
     private ISalesRepository salesRepository;
 
+    // GET all sales
+    public List<SimpleSalesRecordDTO> getAllSales() {
+        List<SalesModel> salesList = salesRepository.findAll();
+
+        return salesList.stream().map(SalesConverter::toStiSimpleSalesRecordDTO).toList();
+    }
+
+    // CREATE (POST) new sale
     public SimpleSalesRecordDTO createSale(CreateSaleDTO createSaleDTO) {
         SalesDomain domain = SalesConverter.toSalesDomain(createSaleDTO);
 

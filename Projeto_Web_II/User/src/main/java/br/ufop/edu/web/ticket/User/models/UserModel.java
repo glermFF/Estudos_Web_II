@@ -43,7 +43,7 @@ public class UserModel {
     private String email;
     private String password;
 
-    @Column(nullable = true) // true - default; false - not null
+    @Column(nullable = true)
     private String city;    
 
     @ManyToOne

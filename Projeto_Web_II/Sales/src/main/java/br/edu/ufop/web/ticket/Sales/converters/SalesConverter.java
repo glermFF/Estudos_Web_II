@@ -16,10 +16,10 @@ public class SalesConverter {
     }
 
     public static SalesModel toSalesModel(SalesDomain salesDomain) {
-        return SalesModel.builder().id(salesDomain.getId()).userId(salesDomain.getUserId()).eventId(salesDomain.getEventId()).purchaseDate(salesDomain.getPurchaseDate()).purchaseStatus(salesDomain.getPurchaseStatus()).createdAt(salesDomain.getCreatedAt()).updatedAt(salesDomain.getUpdatedAt()).build();
+        return SalesModel.builder().id(salesDomain.getId()).userId(salesDomain.getUserId()).eventId(salesDomain.getEventId()).purchaseDate(salesDomain.getPurchaseDate()).purchaseStatus(salesDomain.getPurchaseStatus()).build(); //? REVIEW THIS LINE
     }
 
     public static SalesDomain toSalesDomain(CreateSaleDTO createSaleDTO) {
-        return CreateSaleDTO.builder().eventId(createSaleDTO.eventId()).userId(createSaleDTO.userId()).purchaseStatus(createSaleDTO.purchaseStatus()).build();
+        return SalesDomain.builder().eventId(createSaleDTO.eventId()).userId(createSaleDTO.userId()).purchaseStatus(createSaleDTO.purchaseStatus()).build();
     }
 }
