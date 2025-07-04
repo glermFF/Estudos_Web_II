@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SalesApplication<Sales>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.edu.ufop.web.ticket.Sales.SalesApplication",
+            "projectName": "Sales",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-UserServiceApplication<User>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.ufop.edu.web.ticket.User.UserServiceApplication",
+            "projectName": "User",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

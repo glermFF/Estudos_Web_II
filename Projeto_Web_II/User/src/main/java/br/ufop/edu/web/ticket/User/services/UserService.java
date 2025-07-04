@@ -7,7 +7,6 @@ import br.ufop.edu.web.ticket.User.Enums.EnumUserType;
 import br.ufop.edu.web.ticket.User.converters.UserConverter;
 
 import br.ufop.edu.web.ticket.User.domain.usecase.CreateUserUsecase;
-import br.ufop.edu.web.ticket.User.domain.usecase.UpdateCreditCardUseCase;
 import br.ufop.edu.web.ticket.User.domain.usecase.UpdateUserPasswordUseCase;
 
 import br.ufop.edu.web.ticket.User.dtos.CreateUserDTO;
@@ -139,12 +138,6 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
 
         userModel.setCreditCardNetworkModel(creditCardNetworkModel);
 
-        ///
-        UpdateCreditCardUseCase useCase = new UpdateCreditCardUseCase(userModel.getCreditCardNetworkModel().getId(), updateUserCreditCardDTO.getCreditCardId(), userModel.getCreditCardNumber(), updateUserCreditCardDTO.getCreditCardNumber());
-        useCase.validate();
-
-        userModel.setCreditCardNumber(updateUserCreditCardDTO.getCreditCardNumber());
-        ///
          
         return UserConverter.toUserRecordDTO(userRepository.save(userModel));
     }

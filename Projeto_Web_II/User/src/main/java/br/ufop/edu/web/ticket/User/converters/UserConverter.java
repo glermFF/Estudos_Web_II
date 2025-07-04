@@ -27,7 +27,7 @@ public class UserConverter {//* Funciona como o modelo SingleTom */
 
 
     public static UserDomain toUserDomain(UpdateUserDTO updateUserDTO) { //* Atualiza todos os dados do usuário */
-        return UserDomain.builder().id(updateUserDTO.getId()).name(updateUserDTO.getName()).creditCardNumber(updateUserDTO.getCreditCardNumber()).email(updateUserDTO.getEmail()).password(updateUserDTO.getPassword()).city(updateUserDTO.getCity()).build();
+        return UserDomain.builder().id(updateUserDTO.getId()).creditCardNumber(updateUserDTO.getCreditCardNumber()).build();
     }
 
 
