@@ -11,7 +11,7 @@ import br.edu.ufop.web.ticket.Sales.repositories.ISalesRepository;
 
 public class SalesService {
     
-    private ISalesRepository salesRepository;
+    private final ISalesRepository salesRepository = null;
 
     // GET all sales
     public List<SimpleSalesRecordDTO> getAllSales() {
