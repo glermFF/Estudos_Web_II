@@ -2,6 +2,12 @@
     "configurations": [
         {
             "type": "java",
+            "name": "NameserviceApplication",
+            "request": "launch",
+            "mainClass": "br.edu.ufop.web.nameservice.NameserviceApplication"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-SalesApplication<Sales>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
