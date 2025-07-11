@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufop.web.ticket.Sales.Services.EventsService;
+import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
 import lombok.AllArgsConstructor;
 
@@ -27,4 +30,9 @@ public class EventsController {
         return ResponseEntity.ok(eventsList); 
     }
     
+    @PostMapping
+    public ResponseEntity<SimpleEventsRecordDTO> createEvent(@RequestBody CreateEventDTO createEventDTO) {
+        SimpleEventsRecordDTO eventRecord = eventsService.createEvent(createEventDTO);
+        return ResponseEntity.ok(eventRecord);
+    }
 }

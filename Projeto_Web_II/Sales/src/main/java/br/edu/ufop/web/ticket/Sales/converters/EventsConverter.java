@@ -16,7 +16,7 @@ public class EventsConverter {
     }
 
     public static EventsDomain toEventsDomain(CreateEventDTO createEventDTO) {
-        return EventsDomain.builder().id(createEventDTO.id()).description(createEventDTO.description()).type(createEventDTO.type()).price(createEventDTO.price()).date(createEventDTO.date()).startSales(createEventDTO.startSales()).endSales(createEventDTO.endSales()).build();
+        return EventsDomain.builder().description(createEventDTO.description()).type(createEventDTO.type()).price(createEventDTO.price()).date(createEventDTO.date()).startSales(createEventDTO.startSales()).endSales(createEventDTO.endSales()).build();
     }
 
     public static EventsDomain toEventsDomain(SimpleEventsRecordDTO simpleEventsRecordDTO) {
