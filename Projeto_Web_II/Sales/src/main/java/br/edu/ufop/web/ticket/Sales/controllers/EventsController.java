@@ -21,12 +21,15 @@ public class EventsController {
 
     private final EventsService eventsService;
 
-    // List all events
-    @GetMapping("/")
-    public ResponseEntity<List<SimpleEventsRecordDTO>> getAllEvents() {
+    @GetMapping("/status")
+    public ResponseEntity<String> status() {
+        return ResponseEntity.ok("Events Service is running");
+    }
 
+    // List all events
+    @GetMapping
+    public ResponseEntity<List<SimpleEventsRecordDTO>> getAllEvents() {
         List<SimpleEventsRecordDTO> eventsList = eventsService.getAllEvents();
-        
         return ResponseEntity.ok(eventsList); 
     }
     

@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.sql.Date;
 import java.util.UUID;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +36,8 @@ public class SalesModel {
     private UUID id;
 
     private UUID userId;
+
+    //@ManyToAny(name = "event_id")
     private UUID eventId;
 
     private Date purchaseDate;

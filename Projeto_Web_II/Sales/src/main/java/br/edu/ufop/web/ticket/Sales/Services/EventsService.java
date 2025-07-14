@@ -15,7 +15,7 @@ import br.edu.ufop.web.ticket.Sales.models.EventsModel;;
 @Service
 @AllArgsConstructor
 public class EventsService {
-    private final IEventsRepository eventsRepository = null;    
+    private final IEventsRepository eventsRepository;    
 
     // GET all events
     public List<SimpleEventsRecordDTO> getAllEvents() {
@@ -25,9 +25,7 @@ public class EventsService {
 
     // CREATE EVENT
     public SimpleEventsRecordDTO createEvent(CreateEventDTO eventDTO) {
-        
         EventsDomain domain = EventsConverter.toEventsDomain(eventDTO);
-
         EventsModel model = EventsConverter.toEventsModel(domain);
 
         return EventsConverter.toSimpleEventsRecordDTO(eventsRepository.save(model));

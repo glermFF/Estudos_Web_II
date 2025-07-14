@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SalesService {
     
-    private final ISalesRepository salesRepository = null;
+    private final ISalesRepository salesRepository;
 
     // GET all sales
     public List<SimpleSalesRecordDTO> getAllSales() {
