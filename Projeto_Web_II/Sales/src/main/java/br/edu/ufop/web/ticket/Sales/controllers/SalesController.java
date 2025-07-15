@@ -22,11 +22,9 @@ public class SalesController {
     private final SalesService salesService;
 
     // List all sales
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<List<SimpleSalesRecordDTO>> getAllSales(){
-
         List<SimpleSalesRecordDTO> salesList = salesService.getAllSales();
-        
         return ResponseEntity.ok(salesList);
     }
 

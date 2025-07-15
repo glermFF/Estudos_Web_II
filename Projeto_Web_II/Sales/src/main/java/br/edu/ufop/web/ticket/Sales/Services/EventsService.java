@@ -3,7 +3,6 @@ package br.edu.ufop.web.ticket.Sales.Services;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.event.spi.DeleteEvent;
 import org.springframework.stereotype.Service;
 
 import br.edu.ufop.web.ticket.Sales.converters.EventsConverter;

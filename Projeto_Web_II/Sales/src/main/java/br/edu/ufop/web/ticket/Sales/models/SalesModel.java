@@ -5,12 +5,12 @@ import java.time.LocalDateTime;
 import java.sql.Date;
 import java.util.UUID;
 
-import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -37,7 +37,7 @@ public class SalesModel {
 
     private UUID userId;
 
-    //@ManyToAny(name = "event_id")
+    //@ManyToOne(name = "event_id")
     private UUID eventId;
 
     private Date purchaseDate;
