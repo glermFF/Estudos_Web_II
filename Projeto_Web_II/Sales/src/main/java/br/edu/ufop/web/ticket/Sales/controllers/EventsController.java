@@ -3,15 +3,19 @@ package br.edu.ufop.web.ticket.Sales.controllers;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufop.web.ticket.Sales.Services.EventsService;
 import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.DeleteEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventPriceDTO;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -37,5 +41,17 @@ public class EventsController {
     public ResponseEntity<SimpleEventsRecordDTO> createEvent(@RequestBody CreateEventDTO createEventDTO) {
         SimpleEventsRecordDTO eventRecord = eventsService.createEvent(createEventDTO);
         return ResponseEntity.ok(eventRecord);
+    }
+
+    @PutMapping("/new-price")
+    public ResponseEntity<SimpleEventsRecordDTO> updateEventPrice(@RequestBody UpdateEventPriceDTO updateEventPriceDTO) {
+        SimpleEventsRecordDTO updatedEvent = eventsService.updateEventPrice(updateEventPriceDTO);
+        return ResponseEntity.ok(updatedEvent);
+    }
+
+    @DeleteMapping("/exclude-event")
+    public ResponseEntity<Object> deleteEvent(@RequestBody DeleteEventDTO deleteEventDTO) {
+        eventsService.deleteEvent(deleteEventDTO);
+        return ResponseEntity.ok("Event canceled");   
     }
 }

@@ -3,12 +3,13 @@ package br.edu.ufop.web.ticket.Sales.converters;
 import br.edu.ufop.web.ticket.Sales.domain.EventsDomain;
 import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventPriceDTO;
 import br.edu.ufop.web.ticket.Sales.models.EventsModel;
 
 public class EventsConverter {
 
     public static SimpleEventsRecordDTO toSimpleEventsRecordDTO(EventsModel eventsModel) {
-        return new SimpleEventsRecordDTO(eventsModel.getId(),eventsModel.getDescription(),eventsModel.getType(),eventsModel.getPrice());
+        return new SimpleEventsRecordDTO(eventsModel.getId(),eventsModel.getDescription(),eventsModel.getType(),eventsModel.getPrice(),eventsModel.getDate(),eventsModel.getStartSales(),eventsModel.getEndSales());
     }
     
     public static EventsModel toEventsModel(EventsDomain eventsDomain) {
@@ -21,5 +22,9 @@ public class EventsConverter {
 
     public static EventsDomain toEventsDomain(SimpleEventsRecordDTO simpleEventsRecordDTO) {
         return EventsDomain.builder().id(simpleEventsRecordDTO.id()).description(simpleEventsRecordDTO.description()).type(simpleEventsRecordDTO.type()).price(simpleEventsRecordDTO.price()).build();
+    }
+
+    public static EventsDomain toEventsDomain(UpdateEventPriceDTO updateEventPriceDTO) {
+        return EventsDomain.builder().id(updateEventPriceDTO.id()).price(updateEventPriceDTO.price()).build();
     }
 }

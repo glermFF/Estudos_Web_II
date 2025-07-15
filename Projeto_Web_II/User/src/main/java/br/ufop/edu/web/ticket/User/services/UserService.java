@@ -72,7 +72,7 @@ public class UserService { //* Funciona da mesma maneira como um SingleTom */
         return userModel.stream().map(UserConverter::toUserRecordDTO).toList();
     }
 
-    //!! Implementar função semelhante a anterior voltada para a cidade //public List<UserRecordDTO> getUserByCity(String city){ List<UserModel> userModel = userRepository.findByCity(city) return userModel.stream().map(UserConverter::toUserRecordDTO).toList()}
+    //public List<UserRecordDTO> getUserByCity(String city){ List<UserModel> userModel = userRepository.findByCity(city) return userModel.stream().map(UserConverter::toUserRecordDTO).toList()}
 
     public UserRecordDTO updateUser(UpdateUserDTO updateUserDTO) {
 
