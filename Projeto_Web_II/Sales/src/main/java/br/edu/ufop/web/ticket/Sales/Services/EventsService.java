@@ -10,6 +10,7 @@ import br.edu.ufop.web.ticket.Sales.domain.EventsDomain;
 import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.DeleteEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventDateDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventPriceDTO;
 import br.edu.ufop.web.ticket.Sales.repositories.IEventsRepository;
 import lombok.AllArgsConstructor;
@@ -34,16 +35,33 @@ public class EventsService {
         return EventsConverter.toSimpleEventsRecordDTO(eventsRepository.save(model));
     }
 
-    //! UPDATE PRICE
+    // UPDATE PRICE
     public SimpleEventsRecordDTO updateEventPrice(UpdateEventPriceDTO updateEventPriceDTO) {
-        EventsDomain eventsDomain = EventsConverter.toEventsDomain(updateEventPriceDTO);
-        
+
         Optional<EventsModel> optional = eventsRepository.findById(updateEventPriceDTO.id());
+
         if (optional.isEmpty()){
             return null;
         }
 
-        EventsModel eventsModel = EventsConverter.toEventsModel(eventsDomain);
+        EventsModel eventsModel = optional.get();
+        eventsModel.setPrice(updateEventPriceDTO.price());
+
+        return EventsConverter.toSimpleEventsRecordDTO(eventsRepository.save(eventsModel));
+    }
+
+    // UPDATE DATE
+    public SimpleEventsRecordDTO updateEventDate(UpdateEventDateDTO updateEventDateDTO) {
+        Optional<EventsModel> optional = eventsRepository.findById(updateEventDateDTO.id());
+
+        if (optional.isEmpty()) {
+            return null;
+        }
+
+        EventsModel eventsModel = optional.get();
+        eventsModel.setDate(updateEventDateDTO.newDate());
+        eventsModel.setStartSales(updateEventDateDTO.startSale());
+        eventsModel.setEndSales(updateEventDateDTO.endSale());
 
         return EventsConverter.toSimpleEventsRecordDTO(eventsRepository.save(eventsModel));
     }
@@ -58,4 +76,4 @@ public class EventsService {
 
         eventsRepository.delete(optional.get());
     }
-}   
+}

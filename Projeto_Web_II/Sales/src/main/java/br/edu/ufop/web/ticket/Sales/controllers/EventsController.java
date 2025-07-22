@@ -15,6 +15,7 @@ import br.edu.ufop.web.ticket.Sales.Services.EventsService;
 import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.DeleteEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventDateDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventPriceDTO;
 import lombok.AllArgsConstructor;
 
@@ -46,6 +47,12 @@ public class EventsController {
     @PutMapping("/new-price")
     public ResponseEntity<SimpleEventsRecordDTO> updateEventPrice(@RequestBody UpdateEventPriceDTO updateEventPriceDTO) {
         SimpleEventsRecordDTO updatedEvent = eventsService.updateEventPrice(updateEventPriceDTO);
+        return ResponseEntity.ok(updatedEvent);
+    }
+
+    @PutMapping("/new-date")
+    public ResponseEntity<SimpleEventsRecordDTO> updateEventDate(@RequestBody UpdateEventDateDTO updateEventDateDTO) {
+        SimpleEventsRecordDTO updatedEvent = eventsService.updateEventDate(updateEventDateDTO);
         return ResponseEntity.ok(updatedEvent);
     }
 

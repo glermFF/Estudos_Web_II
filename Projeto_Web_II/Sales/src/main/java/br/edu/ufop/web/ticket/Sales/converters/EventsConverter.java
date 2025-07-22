@@ -4,6 +4,7 @@ import br.edu.ufop.web.ticket.Sales.domain.EventsDomain;
 import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventPriceDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventDateDTO;
 import br.edu.ufop.web.ticket.Sales.models.EventsModel;
 
 public class EventsConverter {
@@ -26,5 +27,9 @@ public class EventsConverter {
 
     public static EventsDomain toEventsDomain(UpdateEventPriceDTO updateEventPriceDTO) {
         return EventsDomain.builder().id(updateEventPriceDTO.id()).price(updateEventPriceDTO.price()).build();
+    }
+
+    public static EventsDomain toEventsDomain(UpdateEventDateDTO updateEventDateDTO) {
+        return EventsDomain.builder().id(updateEventDateDTO.id()).date(updateEventDateDTO.newDate()).startSales(updateEventDateDTO.startSale()).endSales(updateEventDateDTO.endSale()).build();
     }
 }
