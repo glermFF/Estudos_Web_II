@@ -30,7 +30,7 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/")
+    @GetMapping("/port")
     public ResponseEntity<String> getState() {
         return ResponseEntity.ok("EndPoint on PORT 3000");
     }
