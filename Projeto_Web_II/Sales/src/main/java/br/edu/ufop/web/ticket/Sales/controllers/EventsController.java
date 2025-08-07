@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ufop.web.ticket.Sales.Services.EventsService;
-import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.DeleteEventDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventDateDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventPriceDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.CreateEventDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.DeleteEventDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.SimpleEventsRecordDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.UpdateEventDateDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.UpdateEventPriceDTO;
 import lombok.AllArgsConstructor;
 
 @RestController

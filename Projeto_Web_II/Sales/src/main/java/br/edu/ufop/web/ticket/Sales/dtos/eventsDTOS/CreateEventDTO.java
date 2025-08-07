@@ -1,4 +1,4 @@
-package br.edu.ufop.web.ticket.Sales.dtos;
+package br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS;
 
 import java.sql.Date;
 

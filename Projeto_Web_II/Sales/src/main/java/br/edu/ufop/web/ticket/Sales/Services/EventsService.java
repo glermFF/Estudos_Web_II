@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ufop.web.ticket.Sales.converters.EventsConverter;
 import br.edu.ufop.web.ticket.Sales.domain.EventsDomain;
-import br.edu.ufop.web.ticket.Sales.dtos.CreateEventDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.DeleteEventDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.SimpleEventsRecordDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventDateDTO;
-import br.edu.ufop.web.ticket.Sales.dtos.UpdateEventPriceDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.CreateEventDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.DeleteEventDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.SimpleEventsRecordDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.UpdateEventDateDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.eventsDTOS.UpdateEventPriceDTO;
 import br.edu.ufop.web.ticket.Sales.repositories.IEventsRepository;
 import lombok.AllArgsConstructor;
 import br.edu.ufop.web.ticket.Sales.models.EventsModel;;

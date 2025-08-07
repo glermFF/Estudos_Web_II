@@ -3,6 +3,7 @@ package br.edu.ufop.web.ticket.Sales.converters;
 import br.edu.ufop.web.ticket.Sales.domain.SalesDomain;
 import br.edu.ufop.web.ticket.Sales.dtos.CreateSaleDTO;
 import br.edu.ufop.web.ticket.Sales.dtos.SimpleSalesRecordDTO;
+import br.edu.ufop.web.ticket.Sales.dtos.UpdatePurchaseStatusDTO;
 import br.edu.ufop.web.ticket.Sales.models.EventsModel;
 import br.edu.ufop.web.ticket.Sales.models.SalesModel;
 
@@ -22,5 +23,9 @@ public class SalesConverter {
 
     public static SalesDomain toSalesDomain(CreateSaleDTO createSaleDTO) {
         return SalesDomain.builder().eventId(createSaleDTO.eventId()).userId(createSaleDTO.userId()).purchaseStatus(createSaleDTO.purchaseStatus()).build();
+    }
+
+    public static SalesDomain toSalesDomain(UpdatePurchaseStatusDTO updatePurchaseStatusDTO){
+        return SalesDomain.builder().id(updatePurchaseStatusDTO.id()).userId(updatePurchaseStatusDTO.userId()).eventId(updatePurchaseStatusDTO.eventId()).purchaseStatus(updatePurchaseStatusDTO.purchaseStatus()).build();
     }
 }

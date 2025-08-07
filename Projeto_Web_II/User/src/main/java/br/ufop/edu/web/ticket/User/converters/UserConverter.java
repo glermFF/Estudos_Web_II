@@ -10,10 +10,10 @@ import br.ufop.edu.web.ticket.User.dtos.UserRecordDTO;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE) //* Não permite instâncias nos contrutores nesta classe */
-public class UserConverter {//* Funciona como o modelo SingleTom */
+@NoArgsConstructor(access = AccessLevel.PRIVATE) 
+public class UserConverter {
     
-    public static UserRecordDTO toUserRecordDTO(UserModel userModel){ //* Retorna os seguintes dados de usuario */
+    public static UserRecordDTO toUserRecordDTO(UserModel userModel){
         return new UserRecordDTO(userModel.getId(), userModel.getName(), userModel.getEmail(), userModel.getCreditCardNetworkModel());
     }
 
@@ -25,8 +25,7 @@ public class UserConverter {//* Funciona como o modelo SingleTom */
         return UserDomain.builder().name(createUserDTO.getName()).creditCardNumber(createUserDTO.getCreditCardNumber()).email(createUserDTO.getEmail()).password(createUserDTO.getPassword()).city(createUserDTO.getCity()).build();
     }
 
-
-    public static UserDomain toUserDomain(UpdateUserDTO updateUserDTO) { //* Atualiza todos os dados do usuário */
+    public static UserDomain toUserDomain(UpdateUserDTO updateUserDTO) {
         return UserDomain.builder().id(updateUserDTO.getId()).creditCardNumber(updateUserDTO.getCreditCardNumber()).build();
     }
 

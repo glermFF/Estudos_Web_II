@@ -23,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import lombok.AllArgsConstructor;
 
 
-@RestController //*Indica que a classe comportará como dispositivo de controle */
+@RestController 
 @AllArgsConstructor
-@RequestMapping("/users") //*Habilitar depois */
+@RequestMapping("/users") 
 public class UserController {
 
     private final UserService userService;
@@ -36,7 +36,7 @@ public class UserController {
     }
     
     @GetMapping
-    public ResponseEntity <List<UserRecordDTO>> getAllUsers() { //* Mapeia e retorna todos os usuários no endpoint /users */
+    public ResponseEntity <List<UserRecordDTO>> getAllUsers() {
 
         List<UserRecordDTO> userList = userService.getAllUsers();
 
@@ -44,8 +44,8 @@ public class UserController {
     }
 
     @GetMapping("/status")
-    public ResponseEntity<String> getStatus(){ //* Método com generics, usado momentaneamente para retornar os usuários */
-        return ResponseEntity.ok("Service is running"); //* Indicador de que o servidor está rodando */ 
+    public ResponseEntity<String> getStatus(){ 
+        return ResponseEntity.ok("Service is running"); 
     }
 
     @PostMapping 
@@ -59,7 +59,7 @@ public class UserController {
         UserRecordDTO userRecord = userService.getUserById(id);
 
         if(userRecord == null){
-            return ResponseEntity.notFound().build(); //* Retorna mensagem de erro em situação que o id não é retornado */
+            return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok(userRecord);
@@ -112,7 +112,7 @@ public class UserController {
     return ResponseEntity.ok(userRecordDTO);
     }
 
-    @DeleteMapping("/remove") //* Usa o endereço /remove como proteção de evitar acesso de usuários não autorizados */
+    @DeleteMapping("/remove")
     public ResponseEntity<Object> deleteUser(@RequestBody DeleteUserDTO deleteUserDTO){
         userService.deleteUser(deleteUserDTO);
         return ResponseEntity.ok("User has been deleted");

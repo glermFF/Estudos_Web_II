@@ -3,8 +3,6 @@ package br.edu.ufop.web.Notifications.models;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-import org.springframework.cglib.core.Local;
-
 import br.edu.ufop.web.Notifications.enums.EnumNotificationType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
