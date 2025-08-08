@@ -1,0 +1,14 @@
+.block-container{
+
+    position: fixed;
+    top: 7%;
+    right: 0;
+    width: 85%;
+    height: 80vh;
+    padding: 1.5rem 0;
+
+    background-color: aliceblue;
+    color: #666464;
+
+    overflow-y: auto;
+}

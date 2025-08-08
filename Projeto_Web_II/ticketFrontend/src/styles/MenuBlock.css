@@ -1,0 +1,27 @@
+.menu-container{
+    position: fixed;
+    top: 7%;
+    left: 0;
+    width: 15%;
+    height: 100%;
+    padding: 1.5rem 0;
+
+    background-color: #B60042;
+    color: #666464;
+}
+
+.menu-content{
+    display: flex;
+    flex-direction: column;
+    
+    gap: 2rem;
+    padding: 20vh 4vh;
+    
+    text-align: left;
+    list-style: none;
+}
+
+.menu-content a{
+    color: #ebecea;
+    text-decoration: none;
+}

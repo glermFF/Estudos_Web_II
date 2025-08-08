@@ -1,16 +1,22 @@
 import './App.css'
-
-import ListUsers from './components/users/ListUsers'
+import Footer from './components/footer/Footer'
+import Header from './components/header/Headeer'
+import MainBlock from './components/MainBlock/MainBlock'
+import MenuBlock from './components/MenuBlock/MenuBlock'
+// import ListUsers from './components/users/ListUsers'
 
 function App() {
   
 
   return (
     <>
-     <h1>Sistema de vendas de Tickets</h1>
-
      <div>
-       <ListUsers></ListUsers>
+      <Header/>
+
+      <MainBlock></MainBlock>
+      <MenuBlock></MenuBlock>
+      
+      <Footer/>
      </div>
     </>
   )
