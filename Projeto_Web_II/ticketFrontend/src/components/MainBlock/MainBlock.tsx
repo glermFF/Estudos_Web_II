@@ -1,10 +1,10 @@
 import "../../styles/MainBlock.css"
-import ListUsers from "../users/ListUsers"
+import { Outlet } from "react-router-dom"
 
 const MainBlock = () => {
     return (
         <div className="block-container">
-            <ListUsers></ListUsers>
+            <Outlet></Outlet>
         </div>
     )
 }

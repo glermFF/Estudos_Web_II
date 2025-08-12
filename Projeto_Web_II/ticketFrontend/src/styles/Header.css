@@ -1,14 +1,14 @@
 .header-container{
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: flex;
+    justify-content: flex-start;
 
     position: fixed;
     left: 0;
     top: 0;
-    height: 10vh;
+    height: 5vh;
     width: 100%;
-    padding: .2rem 0;
+    padding: .1rem .7rem;
 
     background-color: #7c1b2e;
 }

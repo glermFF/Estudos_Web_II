@@ -1,0 +1,159 @@
+.users-container{
+  padding:1.25rem 1.5rem;
+}
+
+.users-container h2{
+  margin:0 0 1rem;
+  font-size:1.4rem;
+  font-weight:600;
+  color:#1f2937;
+}
+
+.toolbar{
+  display:flex;
+  width: 4%;
+  gap:.75rem;
+  margin:0 0 1rem;
+}
+
+.users-grid{
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 1.25rem;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+}
+
+.user-card{
+    display:flex;
+    flex-direction:column;
+    
+    position:relative;
+
+    gap:.55rem;
+    width: 30.5%;
+    min-width: 180px;
+    padding:1rem .95rem 1.1rem;
+
+    border:1px solid #e5e7eb;
+    background:#ffffff;
+    border-radius:10px;
+    box-shadow:0 2px 4px rgba(0,0,0,.04);
+
+    transition:box-shadow .18s, transform .18s, border-color .18s;
+}
+
+.user-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 6px 18px -4px rgba(0,0,0,.12);
+  border-color:#cbd5e1;
+}
+
+.user-card-head{
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.7rem;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+  color:#64748b;
+}
+
+.user-badge{
+  background:#1d4ed8;
+  color:#ffffff;
+  font-size:.6rem;
+  padding:2px 6px;
+  border-radius:3px;
+  letter-spacing:.5px;
+}
+
+.user-id{
+  font-size:.65rem;
+  background:#f1f5f9;
+  padding:2px 6px;
+  border-radius:4px;
+  color:#475569;
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.user-name{
+  margin:.15rem 0 0;
+  font-size:1.05rem;
+  line-height:1.15;
+  font-weight:600;
+  color:#111827;
+}
+
+.user-email{
+  margin:0;
+  font-size:.8rem;
+  color:#374151;
+  word-break:break-word;
+}
+
+.user-actions{
+  margin-top:auto;
+  display:flex;
+  gap:.5rem;
+}
+
+.user-btn{
+  flex:1;
+  font-size:.7rem;
+  padding:.45rem .55rem;
+  border-radius:6px;
+  border:1px solid #1d4ed8;
+  background:#1d4ed8;
+  color:#fff;
+  font-weight:500;
+  cursor:pointer;
+  transition:background .15s, color .15s, border-color .15s;
+}
+
+.user-btn.outline{
+  background:#fff;
+  color:#1d4ed8;
+}
+
+.user-btn.outline:hover{
+  background:#eff6ff;
+}
+
+.user-btn.danger{
+  background:#dc2626;
+  border-color:#dc2626;
+}
+
+.user-btn.danger:hover{
+  background:#b91c1c;
+  border-color:#b91c1c;
+}
+
+.user-btn:hover{
+  background:#153fae;
+}
+
+@media (max-width:600px){
+  .users-grid{
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:.9rem;
+  }
+  .user-card{
+    padding:.85rem .8rem .95rem;
+  }
+  .user-name{
+    font-size:.95rem;
+  }
+  .user-email{
+    font-size:.7rem;
+  }
+  .user-actions{
+    flex-direction:column;
+  }
+  .user-btn{
+    width:100%;
+  }
+}

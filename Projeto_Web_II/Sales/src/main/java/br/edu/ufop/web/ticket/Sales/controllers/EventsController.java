@@ -32,7 +32,7 @@ public class EventsController {
     }
 
     // List all events
-    @GetMapping
+    @GetMapping("list-events")
     public ResponseEntity<List<SimpleEventsRecordDTO>> getAllEvents() {
         List<SimpleEventsRecordDTO> eventsList = eventsService.getAllEvents();
         return ResponseEntity.ok(eventsList); 

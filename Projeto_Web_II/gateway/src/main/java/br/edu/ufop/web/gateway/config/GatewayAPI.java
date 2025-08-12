@@ -15,6 +15,7 @@ public class GatewayAPI {
         .route("api-users", p -> p.path("/api/users").filters(f -> f.rewritePath("/api/users", "/users")).uri("lb://users-service"))
         .route("users", p -> p.path("/users").uri("lb://users-service"))
         .route("sales", p -> p.path("/sales/**").uri("lb://sales-service"))
+        .route("events", p -> p.path("/events/**").uri("lb://sales-service"))
         .route("notifications", p -> p.path("/notifications/**").uri("lb://notifications-service")).build();
     }
 }

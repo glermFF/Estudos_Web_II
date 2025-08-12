@@ -34,7 +34,8 @@
             "mainClass": "br.edu.ufop.web.gateway.GatewayApplication",
             "projectName": "gateway",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
         },
         {
             "type": "java",
@@ -43,6 +44,17 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "br.edu.ufop.web.nameservice.NameserviceApplication",
             "projectName": "nameservice",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-NotificationsApplication<Notifications>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.edu.ufop.web.Notifications.NotificationsApplication",
+            "projectName": "Notifications",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

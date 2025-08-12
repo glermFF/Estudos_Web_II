@@ -1,10 +1,10 @@
 .menu-container{
     position: fixed;
-    top: 7%;
+    top: 5.25%;
     left: 0;
-    width: 15%;
+    width: 12%;
     height: 100%;
-    padding: 1.5rem 0;
+    padding: .5rem 0;
 
     background-color: #B60042;
     color: #666464;
@@ -14,14 +14,28 @@
     display: flex;
     flex-direction: column;
     
-    gap: 2rem;
     padding: 20vh 4vh;
     
     text-align: left;
     list-style: none;
 }
 
+.menu-content li{
+    padding: 0px;
+}
+
+.menu-content li:hover{
+    background-color: #b19fa5;
+    transition: .5s;
+}
+
 .menu-content a{
     color: #ebecea;
     text-decoration: none;
+
+    display: block;              
+    width: 80%;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    line-height: 1.2;
 }
